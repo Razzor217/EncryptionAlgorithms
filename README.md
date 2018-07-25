@@ -5,3 +5,4 @@ Therefore, a secret key must be exchanged beforehand between all parties; this p
 focuses on encryption and decryption without getting into key exchange protocols.  
 Currently implemented procedures include:  
 1. Shift Cipher (for the memes)
+2. Vigenère Cipher
