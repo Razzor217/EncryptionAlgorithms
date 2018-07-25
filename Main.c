@@ -6,13 +6,14 @@
 int main() {
 
 	char* message = "Hello, world!";
-	// Classic caesar
-	char* ciphertext = encrypt_sc_all(message, 13, 5);
-	char* plaintext = decrypt_sc_all(ciphertext, 13, 5);
+	char* ciphertext = encrypt_sc_n(message, 13, 35);
+	char* plaintext = decrypt_sc_n(ciphertext, 13, 35);
 
-	printf("Original message: %s\n", message);
-	printf("Encrypted message: %s\n", ciphertext);
-	printf("Decrypted message: %s\n", plaintext);
+	printf("Original message: %21s\n", message);
+	printf("Encrypted message: %20s\n", ciphertext);
+	printf("Decrypted message: %20s\n", plaintext);
 
+	free(ciphertext);
+	free(plaintext);
 	return 0;
 }

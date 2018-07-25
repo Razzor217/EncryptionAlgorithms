@@ -7,8 +7,6 @@
 /*
  * Implements a basic shift cipher.
  * Input is character based, as is the key for this rather trivial algorithm.
- *
- * TODO: Bug fixes.
  */
 
 /*
@@ -34,12 +32,12 @@ void encrypt_sc(char*, int, char);
 void decrypt_sc(char*, int, char);
 
 /*
- * Encryption for printable characters.
+ * Encryption for all printable characters.
  */
 char* encrypt_sc_all(char*, int, char);
 
 /*
- * Decryption for printable characters.
+ * Decryption for all printable characters.
  */
 char* decrypt_sc_all(char*, int, char);
 

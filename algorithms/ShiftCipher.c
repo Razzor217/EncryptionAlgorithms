@@ -6,8 +6,11 @@ char* encrypt_sc_n(char* m, int n, char k) {
 	for (i=0; i<n; i++) {
 		char c = *(m+i);
 		char start = getRange_sc(c);
-		if (start>0)
-			*(cipher+i) = ((c-start+k) % 26) + start;
+		if (start>0) {
+			// Add modulo operand followed by another modulo to eliminate 
+			// incorrect results due to negative values
+			*(cipher+i) = ((((c-start+k) % 26)+ 26) % 26) + start;
+		}
 		else
 			*(cipher+i) = c;
 	}
@@ -20,8 +23,11 @@ char* decrypt_sc_n(char* cipher, int n, char k) {
 	for (i=0; i<n; i++) {
 		char c = *(cipher+i);
 		char start = getRange_sc(c);
-		if (start>0)
-			*(m+i) = ((c-start-k) % 26) + start;
+		if (start>0) {
+			// Add modulo operand followed by another modulo to eliminate 
+			// incorrect results due to negative values
+			*(m+i) = ((((c-start-k) % 26) + 26) % 26) + start;
+		}
 		else
 			*(m+i) = c;
 	}
@@ -33,8 +39,11 @@ void encrypt_sc(char* m, int n, char k) {
 	for (i=0; i<n; i++) {
 		char c = *(m+i);
 		char start = getRange_sc(c);
-		if (start>0)
-			*(m+i) = ((c-start+k) % 26) + start;
+		if (start>0) {
+			// Add modulo operand followed by another modulo to eliminate 
+			// incorrect results due to negative values
+			*(m+i) = ((((c-start+k) % 26) + 26) % 26) + start;
+		}
 	}
 }
 
@@ -43,8 +52,11 @@ void decrypt_sc(char* cipher, int n, char k) {
 	for (i=0; i<n; i++) {
 		char c = *(cipher+i);
 		char start = getRange_sc(c);
-		if (start>0)
-			*(cipher+i) = ((c-start-k) % 26) + start;
+		if (start>0) {
+			// Add modulo operand followed by another modulo to eliminate 
+			// incorrect results due to negative values
+			*(cipher+i) = ((((c-start-k) % 26) + 26) % 26) + start;
+		}
 	}
 }
 
@@ -52,7 +64,9 @@ char* encrypt_sc_all(char* m, int n, char k) {
 	char* c = calloc(n, sizeof(char));
 	int i;
 	for (i=0; i<n; i++)
-		*(c+i) = ((*(m+i) - 32 + k) % 95) + 32;
+		// Add modulo operand followed by another modulo to eliminate 
+		// incorrect results due to negative values
+		*(c+i) = ((((*(m+i) - 32 + k) % 95) + 95) % 95) + 32;
 	return c;
 }
 
@@ -60,7 +74,9 @@ char* decrypt_sc_all(char* c, int n, char k) {
 	char* m = calloc(n, sizeof(char));
 	int i;
 	for (i=0; i<n; i++)
-		*(m+i) = ((*(c+i) - 32 - k) % 95) + 32;
+		// Add modulo operand followed by another modulo to eliminate 
+		// incorrect results due to negative values
+		*(m+i) = ((((*(c+i) - 32 - k) % 95) + 95) % 95) + 32;
 	return m;
 }
 
