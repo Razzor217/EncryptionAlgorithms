@@ -3,24 +3,44 @@
 #include <string.h>
 
 #include "algorithms/ShiftCipher.h"
+#include "algorithms/Vigenere.h"
 
 int main() {
 
 	char* message = strdup("Hello, world!");
-	char* ciphertext = encrypt_sc_all(message, 13, 35);
-	char* plaintext = decrypt_sc_all(ciphertext, 13, 35);
+	char* key = "bzarf";
 
+	char* ciphertext_sc_all = encrypt_sc_all(message, 13, 'q');
+	char* plaintext_sc_all = decrypt_sc_all(ciphertext_sc_all, 13, 'q');
+
+	char* ciphertext_v = encrypt_v(message, 13, key, 5);
+	char* plaintext_v = decrypt_v(ciphertext_v, 13, key, 5);
+
+	char* ciphertext_sc_n = encrypt_sc_n(message, 13, 'R');
+	char* plaintext_sc_n = decrypt_sc_n(ciphertext_sc_n, 13, 'R');
+
+	printf("Shift cipher (ASCII):\n");
 	printf("Original message: %21s\n", message);
-	printf("Encrypted message: %20s\n", ciphertext);
-	printf("Decrypted message: %20s\n", plaintext);
+	printf("Encrypted message: %20s\n", ciphertext_sc_all);
+	printf("Decrypted message: %20s\n", plaintext_sc_all);
 
-	encrypt_sc(message, 13, 20);
-	printf("Encrypted message: %20s\n", message);
-	decrypt_sc(message, 13, 20);
-	printf("Decrypted message: %20s\n", message);
+	
+	printf("Vigenere:\n");
+	printf("Original message: %21s\n", message);
+	printf("Encrypted message: %20s\n", ciphertext_v);
+	printf("Decrypted message: %20s\n", plaintext_v);
+
+	printf("Shift cipher (alphabet):\n");
+	printf("Original message: %21s\n", message);
+	printf("Encrypted message: %20s\n", ciphertext_sc_n);
+	printf("Decrypted message: %20s\n", plaintext_sc_n);
 
 	free(message);
-	free(ciphertext);
-	free(plaintext);
+	free(ciphertext_sc_all);
+	free(ciphertext_v);
+	free(ciphertext_sc_n);
+	free(plaintext_sc_all);
+	free(plaintext_v);
+	free(plaintext_sc_n);
 	return 0;
 }
