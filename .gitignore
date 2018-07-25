@@ -11,4 +11,4 @@
 *.o
 
 # Unignore makefiles
-makefile
+!makefile
