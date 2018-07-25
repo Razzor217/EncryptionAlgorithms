@@ -1,58 +1,74 @@
-#include <stdint.h>
-#include <stdlib.h>
+#include "ShiftCipher.h"
 
-/*
- * Implements a basic shift cipher.
- * Input is character based, as is the key for this rather trivial algorithm.
- * Therefore, int8_t is used and input values should be in the range {0, ..., 25}.
- */
-
-/*
- * Shifts every element of the plaintext by k elements to the right.
- * Returns a pointer to a new array containing the ciphertext.
- */
-int8_t* encrypt_sc_n(int8_t*, int, int8_t);
-
-/*
- * Shifts every element of the ciphertext by k elements to the left.
- * Returns a pointer to a new array containing the plaintext.
- */
-int8_t* decrypt_sc_n(int8_t*, int, int8_t);
-
-/*
- * Shifts every element of the plaintext by k elements to the right.
- */
-void encrypt_sc(int8_t*, int, int8_t);
-
-/*
- * Shifts every element of the ciphertext by k elements to the left.
- */
-void decrypt_sc(int8_t*, int, int8_t);
-
-int8_t* encrypt_sc_n(int8_t* m, int n, int8_t k) {
-	int8_t* c = calloc(n, sizeof(int8_t));
+char* encrypt_sc_n(char* m, int n, char k) {
+	char* cipher = calloc(n, sizeof(char));
 	int i;
-	for (i=0; i<n; i++)
-		*(c+i) = (*(m+i) + k) % 26;
-	return c;
+	for (i=0; i<n; i++) {
+		char c = *(m+i);
+		char start = getRange_sc(c);
+		if (start>0)
+			*(cipher+i) = ((c-start+k) % 26) + start;
+		else
+			*(cipher+i) = c;
+	}
+	return cipher;
 }
 
-int8_t* decrypt_sc_n(int8_t* c, int n, int8_t k) {
-	int8_t* m = calloc(n, sizeof(int8_t));
+char* decrypt_sc_n(char* cipher, int n, char k) {
+	char* m = calloc(n, sizeof(char));
 	int i;
-	for (i=0; i<n; i++)
-		*(m+i) = (*(c+i) - k) % 26;
+	for (i=0; i<n; i++) {
+		char c = *(cipher+i);
+		char start = getRange_sc(c);
+		if (start>0)
+			*(m+i) = ((c-start-k) % 26) + start;
+		else
+			*(m+i) = c;
+	}
 	return m;
 }
 
-void encrypt_sc(int8_t* m, int n, int8_t k) {
+void encrypt_sc(char* m, int n, char k) {
 	int i;
-	for (i=0; i<n; i++)
-		*(m+i) = (*(m+i) + k) % 26;
+	for (i=0; i<n; i++) {
+		char c = *(m+i);
+		char start = getRange_sc(c);
+		if (start>0)
+			*(m+i) = ((c-start+k) % 26) + start;
+	}
 }
 
-void decrypt_sc(int8_t* c, int n, int8_t k) {
+void decrypt_sc(char* cipher, int n, char k) {
+	int i;
+	for (i=0; i<n; i++) {
+		char c = *(cipher+i);
+		char start = getRange_sc(c);
+		if (start>0)
+			*(cipher+i) = ((c-start-k) % 26) + start;
+	}
+}
+
+char* encrypt_sc_all(char* m, int n, char k) {
+	char* c = calloc(n, sizeof(char));
 	int i;
 	for (i=0; i<n; i++)
-		*(c+i) = (*(c+i) - k) % 26;
+		*(c+i) = ((*(m+i) - 32 + k) % 95) + 32;
+	return c;
+}
+
+char* decrypt_sc_all(char* c, int n, char k) {
+	char* m = calloc(n, sizeof(char));
+	int i;
+	for (i=0; i<n; i++)
+		*(m+i) = ((*(c+i) - 32 - k) % 95) + 32;
+	return m;
+}
+
+char getRange_sc(char c) {
+	if (c >= 'A' && c <= 'Z')
+		return 'A';
+	else if (c >= 'a' && c <= 'z')
+		return 'a';
+	else
+		return 0;
 }
