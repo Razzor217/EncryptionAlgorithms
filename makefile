@@ -13,4 +13,4 @@ main: $(OBJ)
 	gcc -o main $(OBJ)
 
 clean:
-	rm -rf $(OBJ)
+	rm -rf main $(OBJ)
