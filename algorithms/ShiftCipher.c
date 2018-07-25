@@ -37,8 +37,22 @@ int8_t* encrypt_sc_n(int8_t* m, int n, int8_t k) {
 	return c;
 }
 
+int8_t* decrypt_sc_n(int8_t* c, int n, int8_t k) {
+	int8_t* m = calloc(n, sizeof(int8_t));
+	int i;
+	for (i=0; i<n; i++)
+		*(m+i) = (*(c+i) - k) % 26;
+	return m;
+}
+
 void encrypt_sc(int8_t* m, int n, int8_t k) {
 	int i;
 	for (i=0; i<n; i++)
 		*(m+i) = (*(m+i) + k) % 26;
+}
+
+void decrypt_sc(int8_t* c, int n, int8_t k) {
+	int i;
+	for (i=0; i<n; i++)
+		*(c+i) = (*(c+i) - k) % 26;
 }
