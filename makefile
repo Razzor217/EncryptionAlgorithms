@@ -1,5 +1,5 @@
 OBJ = Main.o ShiftCipher.o Vigenere.o
-PATH = algorithms/
+PATH = algorithms/symmetric/
 
 default: main
 

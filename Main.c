@@ -2,8 +2,8 @@
 #include <stdlib.h>
 #include <string.h>
 
-#include "algorithms/ShiftCipher.h"
-#include "algorithms/Vigenere.h"
+#include "algorithms/symmetric/ShiftCipher.h"
+#include "algorithms/symmetric/Vigenere.h"
 
 int main() {
 
