@@ -1,12 +1,15 @@
+#include <stdint.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 
+#include "algorithms/symmetric/DES/InitialPermutation.h"
 #include "algorithms/symmetric/ShiftCipher.h"
 #include "algorithms/symmetric/Vigenere.h"
 
 int main() {
 
+	/*
 	char* message = strdup("Hello, world!");
 	char* key = "bzarf";
 
@@ -42,5 +45,21 @@ int main() {
 	free(plaintext_sc_all);
 	free(plaintext_v);
 	free(plaintext_sc_n);
+	*/
+
+	// 15 = 0000 1111; change 4th bit to 0, i.e. 0000 0111 = 7
+	uint64_t number = 15U;
+	printf("Number: %llu\n", number);
+	number = (number & ~(1ULL << 63)) | (1ULL << 63);
+	printf("Change bit 4 of number to 0: %llu\n", number);
+
+	number = 0ULL;
+	number = (number & ~(1ULL << 57)) | (1ULL << 57);
+	printf("Number: %llu\n", number);
+	uint64_t ip = initialPermutation(number);
+	printf("Permutate bits 58 and 1 of number: %llu\n", ip);
+	uint64_t ip_inv = initialPermutation_inv(ip);
+	printf("Change it back: %llu\n", ip_inv);
+
 	return 0;
 }

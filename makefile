@@ -1,9 +1,13 @@
-OBJ = Main.o ShiftCipher.o Vigenere.o
+OBJ = Main.o ShiftCipher.o Vigenere.o InitialPermutation.o
 PATH = algorithms/symmetric/
+PATH_DES = algorithms/symmetric/DES/
 
 default: main
 
-Main.o: Main.c $(PATH)ShiftCipher.h
+InitialPermutation.o: $(PATH_DES)InitialPermutation.c $(PATH_DES)InitialPermutation.h
+	gcc -c $(PATH_DES)InitialPermutation.c
+
+Main.o: Main.c
 	gcc -c Main.c
 
 ShiftCipher.o: $(PATH)ShiftCipher.c $(PATH)ShiftCipher.h
