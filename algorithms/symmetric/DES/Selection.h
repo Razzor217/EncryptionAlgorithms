@@ -3,6 +3,8 @@
 
 #include <stdint.h>
 
+void selection(uint8_t, uint8_t*, uint8_t*);
+
 uint8_t selection_1(uint8_t);
 
 uint8_t selection_2(uint8_t);

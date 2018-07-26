@@ -1,4 +1,4 @@
-OBJ = Main.o ShiftCipher.o Vigenere.o InitialPermutation.o
+OBJ = InitialPermutation.o Main.o Selection.o ShiftCipher.o Vigenere.o
 PATH = algorithms/symmetric/
 PATH_DES = algorithms/symmetric/DES/
 
@@ -9,6 +9,9 @@ InitialPermutation.o: $(PATH_DES)InitialPermutation.c $(PATH_DES)InitialPermutat
 
 Main.o: Main.c
 	gcc -c Main.c
+
+Selection.o: $(PATH_DES)Selection.c $(PATH_DES)Selection.h
+	gcc -c $(PATH_DES)Selection.c
 
 ShiftCipher.o: $(PATH)ShiftCipher.c $(PATH)ShiftCipher.h
 	gcc -c $(PATH)ShiftCipher.c

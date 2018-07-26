@@ -4,6 +4,7 @@
 #include <string.h>
 
 #include "algorithms/symmetric/DES/InitialPermutation.h"
+#include "algorithms/symmetric/DES/Selection.h"
 #include "algorithms/symmetric/ShiftCipher.h"
 #include "algorithms/symmetric/Vigenere.h"
 
@@ -55,11 +56,20 @@ int main() {
 
 	number = 0ULL;
 	number = (number & ~(1ULL << 57)) | (1ULL << 57);
+	number = (number & ~(1ULL << 49)) | (1ULL << 49);
+	number = (number & ~(1ULL << 41)) | (1ULL << 41);
 	printf("Number: %llu\n", number);
 	uint64_t ip = initialPermutation(number);
 	printf("Permutate bits 58 and 1 of number: %llu\n", ip);
 	uint64_t ip_inv = initialPermutation_inv(ip);
 	printf("Change it back: %llu\n", ip_inv);
+
+	printf("Selection function S1:\n");
+	uint8_t input = 0b101111;
+	printf("Input: %d\n", input);
+	printf("Expected output: 7\n");
+	uint8_t output = selection_1(input);
+	printf("Actual output: %d\n", output);
 
 	return 0;
 }
