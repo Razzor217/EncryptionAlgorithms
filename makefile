@@ -1,5 +1,5 @@
-OBJ = Expansion.o InitialPermutation.o Main.o Permutation.o Selection.o ShiftCipher.o \
-	Vigenere.o
+OBJ = Expansion.o Feistel.o InitialPermutation.o Main.o Permutation.o Selection.o \
+	ShiftCipher.o Vigenere.o
 PATH = algorithms/symmetric/
 PATH_DES = algorithms/symmetric/DES/
 
@@ -7,6 +7,9 @@ default: main
 
 Expansion.o: $(PATH_DES)Expansion.c $(PATH_DES)Expansion.h
 	gcc -c $(PATH_DES)Expansion.c
+
+Feistel.o: $(PATH_DES)Feistel.c $(PATH_DES)Feistel.h
+	gcc -c $(PATH_DES)Feistel.c
 
 InitialPermutation.o: $(PATH_DES)InitialPermutation.c $(PATH_DES)InitialPermutation.h
 	gcc -c $(PATH_DES)InitialPermutation.c
