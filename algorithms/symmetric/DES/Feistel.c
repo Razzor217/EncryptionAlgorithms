@@ -10,7 +10,7 @@ uint32_t feistel(uint32_t r, uint64_t k) {
 	uint64_t e = expansion(r);
 	uint32_t f = 0UL;
 	
-	e = e ^ k;
+	e ^= k;
 
 	uint8_t* b = calloc(8, sizeof(uint8_t));
 	int i;
@@ -48,6 +48,6 @@ uint32_t feistel(uint32_t r, uint64_t k) {
 
 	// Apply permutation to concatenated blocks
 	f = permutation(f);
-
+	free(b);
 	return f;
 }
