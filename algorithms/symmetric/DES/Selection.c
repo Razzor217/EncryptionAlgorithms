@@ -4,9 +4,13 @@ void selection(uint8_t in, uint8_t* row, uint8_t* col) {
 	// Extract bits 0 and 5
 	uint8_t first = in & 1U;
 	uint8_t last = (in >> 5) & 1U;
-	// Set bits 0 and 5 to 0
+
+	// Set bits 0, 5, 6 and 7 to 0
 	*col = *col & ~(1U);
 	*col = *col & ~(1U << 5);
+	*col = *col & ~(1U << 6);
+	*col = *col & ~(1U << 7);
+
 	// Shift everything 1 bit right
 	*col = *col >> 1;
 	// Concatenate bits 5 and 0
@@ -20,10 +24,6 @@ uint8_t selection_1(uint8_t in) {
 		{4, 1, 14, 8, 13, 6, 2, 11, 15, 12, 9, 7, 3, 10, 5, 0},
 		{15, 12, 8, 2, 4, 9, 1, 7, 5, 11, 3, 14, 10, 0, 6, 13}
 	};
-
-	// Set bits 6 and 7 of in to 0
-	in = in & ~(1U << 6);
-	in = in & ~(1U << 7);
 
 	uint8_t row = 0U;
 	uint8_t col = in;
@@ -41,10 +41,6 @@ uint8_t selection_2(uint8_t in) {
 		{13, 8, 10, 1, 3, 15, 4, 2, 11, 6, 7, 12, 0, 5, 14, 9}
 	};
 
-	// Set bits 6 and 7 of in to 0
-	in = in & ~(1U << 6);
-	in = in & ~(1U << 7);
-
 	uint8_t row = 0U;
 	uint8_t col = in;
 
@@ -60,10 +56,6 @@ uint8_t selection_3(uint8_t in) {
 		{13, 6, 4, 9, 8, 15, 3, 0, 11, 1, 2, 12, 5, 10, 14, 7},
 		{1, 10, 13, 0, 6, 9, 8, 7, 4, 15, 14, 3, 11, 5, 2, 12}
 	};
-
-	// Set bits 6 and 7 of in to 0
-	in = in & ~(1U << 6);
-	in = in & ~(1U << 7);
 
 	uint8_t row = 0U;
 	uint8_t col = in;
@@ -81,10 +73,6 @@ uint8_t selection_4(uint8_t in) {
 		{3, 15, 0, 6, 10, 1, 13, 8, 9, 4, 5, 11, 12, 7, 2, 14}
 	};
 
-	// Set bits 6 and 7 of in to 0
-	in = in & ~(1U << 6);
-	in = in & ~(1U << 7);
-
 	uint8_t row = 0U;
 	uint8_t col = in;
 
@@ -100,10 +88,6 @@ uint8_t selection_5(uint8_t in) {
 		{4, 2, 1, 11, 10, 13, 7, 8, 15, 9, 12, 5, 6, 3, 0, 14},
 		{11, 8, 12, 7, 1, 14, 2, 13, 6, 15, 0, 9, 10, 4, 5, 3}
 	};
-
-	// Set bits 6 and 7 of in to 0
-	in = in & ~(1U << 6);
-	in = in & ~(1U << 7);
 
 	uint8_t row = 0U;
 	uint8_t col = in;
@@ -121,10 +105,6 @@ uint8_t selection_6(uint8_t in) {
 		{4, 3, 2, 12, 9, 5, 15, 10, 11, 14, 1, 7, 6, 0, 8, 13}
 	};
 
-	// Set bits 6 and 7 of in to 0
-	in = in & ~(1U << 6);
-	in = in & ~(1U << 7);
-
 	uint8_t row = 0U;
 	uint8_t col = in;
 
@@ -141,10 +121,6 @@ uint8_t selection_7(uint8_t in) {
 		{6, 11, 13, 8, 1, 4, 10, 7, 9, 5, 0, 15, 14, 2, 3, 12}
 	};
 
-	// Set bits 6 and 7 of in to 0
-	in = in & ~(1U << 6);
-	in = in & ~(1U << 7);
-
 	uint8_t row = 0U;
 	uint8_t col = in;
 
@@ -160,10 +136,6 @@ uint8_t selection_8(uint8_t in) {
 		{7, 11, 4, 1, 9, 12, 14, 2, 0, 6, 10, 13, 15, 3, 5, 8},
 		{2, 1, 14, 7, 4, 10, 8, 13, 15, 12, 9, 0, 3, 5, 6, 11}
 	};
-
-	// Set bits 6 and 7 of in to 0
-	in = in & ~(1U << 6);
-	in = in & ~(1U << 7);
 
 	uint8_t row = 0U;
 	uint8_t col = in;
