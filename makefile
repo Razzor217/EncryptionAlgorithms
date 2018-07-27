@@ -1,9 +1,14 @@
-OBJ = Expansion.o Feistel.o InitialPermutation.o KeyPermutation.o KeySchedule.o \
-	Permutation.o Selection.o ShiftCipher.o Vigenere.o Main.o
+OBJ = DataEncryptionStandard.o Expansion.o Feistel.o InitialPermutation.o \
+	KeyPermutation.o KeySchedule.o Permutation.o Selection.o ShiftCipher.o \
+	Vigenere.o Main.o
 PATH = algorithms/symmetric/
 PATH_DES = algorithms/symmetric/DES/
 
 default: main
+
+DataEncryptionStandard.o: $(PATH_DES)DataEncryptionStandard.c \
+	$(PATH_DES)DataEncryptionStandard.h
+	gcc -c $(PATH_DES)DataEncryptionStandard.c
 
 Expansion.o: $(PATH_DES)Expansion.c $(PATH_DES)Expansion.h
 	gcc -c $(PATH_DES)Expansion.c
