@@ -1,6 +1,6 @@
 OBJ = DataEncryptionStandard.o Expansion.o Feistel.o InitialPermutation.o \
 	KeyPermutation.o KeySchedule.o Permutation.o Selection.o ShiftCipher.o \
-	Vigenere.o Main.o
+	TripleDEA.o Vigenere.o Main.o
 PATH = algorithms/symmetric/
 PATH_DES = algorithms/symmetric/DES/
 
@@ -33,6 +33,9 @@ Selection.o: $(PATH_DES)Selection.c $(PATH_DES)Selection.h
 
 ShiftCipher.o: $(PATH)ShiftCipher.c $(PATH)ShiftCipher.h
 	gcc -c $(PATH)ShiftCipher.c
+
+TripleDEA.o: $(PATH)TripleDEA.c $(PATH)TripleDEA.h
+	gcc -c $(PATH)TripleDEA.c
 
 Vigenere.o: $(PATH)Vigenere.c $(PATH)Vigenere.h
 	gcc -c $(PATH)Vigenere.c
