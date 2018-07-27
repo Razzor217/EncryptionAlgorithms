@@ -1,5 +1,5 @@
-OBJ = Expansion.o Feistel.o InitialPermutation.o Main.o Permutation.o Selection.o \
-	ShiftCipher.o Vigenere.o
+OBJ = Expansion.o Feistel.o InitialPermutation.o KeyPermutation.o Permutation.o \
+	Selection.o ShiftCipher.o Vigenere.o Main.o
 PATH = algorithms/symmetric/
 PATH_DES = algorithms/symmetric/DES/
 
@@ -14,8 +14,8 @@ Feistel.o: $(PATH_DES)Feistel.c $(PATH_DES)Feistel.h
 InitialPermutation.o: $(PATH_DES)InitialPermutation.c $(PATH_DES)InitialPermutation.h
 	gcc -c $(PATH_DES)InitialPermutation.c
 
-Main.o: Main.c
-	gcc -c Main.c
+KeyPermutation.o: $(PATH_DES)KeyPermutation.c $(PATH_DES)KeyPermutation.h
+	gcc -c $(PATH_DES)KeyPermutation.c
 
 Permutation.o: $(PATH_DES)Permutation.o $(PATH_DES)Permutation.h
 	gcc -c $(PATH_DES)Permutation.c
@@ -28,6 +28,9 @@ ShiftCipher.o: $(PATH)ShiftCipher.c $(PATH)ShiftCipher.h
 
 Vigenere.o: $(PATH)Vigenere.c $(PATH)Vigenere.h
 	gcc -c $(PATH)Vigenere.c
+
+Main.o: Main.c
+	gcc -c Main.c
 
 main: $(OBJ)
 	gcc -o main $(OBJ)
