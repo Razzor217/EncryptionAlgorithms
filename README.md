@@ -6,3 +6,5 @@ focuses on encryption and decryption without getting into key exchange protocols
 Currently implemented procedures include:  
 1. Shift Cipher (for the memes)
 2. Vigenère Cipher
+3. Data Encryption Standard (DES)
+4. Triple Data Encryption Algorithm (TDEA)
