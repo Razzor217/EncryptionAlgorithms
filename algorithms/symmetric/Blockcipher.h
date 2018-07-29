@@ -15,9 +15,9 @@ uint64_t* encrypt_TDEA_ECB(char*, int, int*, uint64_t, uint64_t, uint64_t);
 
 char* decrypt_TDEA_ECB(uint64_t*, int, uint64_t, uint64_t, uint64_t);
 
-uint64_t* encrypt_TDEA_CBC(char*, int, uint64_t, uint64_t, uint64_t);
+uint64_t* encrypt_TDEA_CBC(char*, int, int*, uint64_t, uint64_t, uint64_t, uint64_t);
 
-char* decrypt_TDEA_CBC(char*, int, uint64_t, uint64_t, uint64_t);
+char* decrypt_TDEA_CBC(uint64_t*, int, uint64_t, uint64_t, uint64_t, uint64_t);
 
 uint64_t* encrypt_TDEA_CTR(char*, int, uint64_t, uint64_t, uint64_t);
 
