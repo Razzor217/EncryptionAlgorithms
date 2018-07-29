@@ -1,10 +1,13 @@
-OBJ = DataEncryptionStandard.o Expansion.o Feistel.o InitialPermutation.o \
+OBJ = Blockcipher.o DataEncryptionStandard.o Expansion.o Feistel.o InitialPermutation.o \
 	KeyPermutation.o KeySchedule.o Permutation.o Selection.o ShiftCipher.o \
 	TripleDEA.o Vigenere.o Main.o
 PATH = algorithms/symmetric/
 PATH_DES = algorithms/symmetric/DES/
 
 default: main
+
+Blockcipher.o: $(PATH)Blockcipher.c $(PATH)Blockcipher.h
+	gcc -c $(PATH)Blockcipher.c
 
 DataEncryptionStandard.o: $(PATH_DES)DataEncryptionStandard.c \
 	$(PATH_DES)DataEncryptionStandard.h
