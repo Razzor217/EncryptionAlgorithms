@@ -1,6 +1,16 @@
-OBJ = Blockcipher.o DataEncryptionStandard.o Expansion.o Feistel.o InitialPermutation.o \
-	KeyPermutation.o KeySchedule.o Permutation.o Selection.o ShiftCipher.o \
-	TripleDEA.o Vigenere.o Main.o
+OBJ = Blockcipher.o \
+	DataEncryptionStandard.o \
+	Expansion.o Feistel.o \
+	InitialPermutation.o \
+	KeyPermutation.o \
+	KeySchedule.o \
+	Permutation.o \
+	Selection.o \
+	ShiftCipher.o \
+	TripleDEA.o \
+	Vigenere.o \
+	Main.o
+
 PATH = algorithms/symmetric/
 PATH_DES = algorithms/symmetric/DES/
 
