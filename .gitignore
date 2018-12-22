@@ -12,3 +12,6 @@
 
 # Unignore makefiles
 !makefile
+
+# Ignore Mac DS files
+.DS_Store
